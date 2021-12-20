@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:perpus_jateng_app/controller/controller.dart';
+import 'package:perpus_jateng_app/helper/theme.dart';
+
+class ControlView extends StatelessWidget {
+  const ControlView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Obx((){
+      return GetBuilder<PageViewController>(
+        init: PageViewController(),
+          builder: (controller) => Scaffold(
+        body: controller.currentScreen,
+            bottomNavigationBar: const CustomBottomNavigationBar(),
+      ));
+    });
+  }
+}
+
+class CustomBottomNavigationBar extends StatelessWidget {
+  const CustomBottomNavigationBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 56,
+      child: GetBuilder<PageViewController>(builder: (controller)=> BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: controller.navigationIndex,
+        selectedItemColor: ThemeColor.purpleColor,
+        unselectedItemColor: ThemeColor.blueColor,
+        onTap: (index) {
+          controller.changeCurrentScreen(index);
+        },
+
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Home',
+              icon: FaIcon(FontAwesomeIcons.home)),
+          BottomNavigationBarItem(
+            label: 'Category',
+              icon: FaIcon(FontAwesomeIcons.listAlt)),
+          BottomNavigationBarItem(
+            label: 'Video',
+              icon: FaIcon(FontAwesomeIcons.playCircle)),
+          BottomNavigationBarItem(
+            label: 'Setting',
+              icon: FaIcon(FontAwesomeIcons.cog)),
+        ],
+      )),
+    );
+  }
+}
+
