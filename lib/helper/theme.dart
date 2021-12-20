@@ -7,7 +7,7 @@ class ThemeColor {
   static const Color bgColor = Color(0xFFE2E9FE);
   static const Color purpleColor = Color(0xFF1F0757);
   static const Color blueColor = Color(0xFF0D5AFD);
-  static const Color blackColor = Color(0xFF00D000);
+  static const Color blackColor = Color(0xFF0D0E0D);
 }
 
 class Assets {

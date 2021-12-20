@@ -9,14 +9,16 @@ class ControlView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Obx((){
-      return GetBuilder<PageViewController>(
+      return Get.find<NetworkController>().connectionStatus.value == 1
+          || Get.find<NetworkController>().connectionStatus.value == 2
+          ? GetBuilder<PageViewController>(
         init: PageViewController(),
           builder: (controller) => Scaffold(
         body: controller.currentScreen,
             bottomNavigationBar: const CustomBottomNavigationBar(),
-      ));
+          ))
+          :Container();
     });
   }
 }

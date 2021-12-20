@@ -5,5 +5,6 @@ class Binding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => PageViewController());
+    Get.lazyPut(() => NetworkController());
   }
 }
