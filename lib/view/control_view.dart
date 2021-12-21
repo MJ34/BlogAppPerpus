@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:perpus_jateng_app/controller/controller.dart';
 import 'package:perpus_jateng_app/helper/theme.dart';
+import 'package:perpus_jateng_app/view/pages/pages.dart';
 
 class ControlView extends StatelessWidget {
   const ControlView({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class ControlView extends StatelessWidget {
         body: controller.currentScreen,
             bottomNavigationBar: const CustomBottomNavigationBar(),
           ))
-          :Container();
+          : const NoConnectionPage();
     });
   }
 }

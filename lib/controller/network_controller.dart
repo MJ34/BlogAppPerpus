@@ -4,12 +4,12 @@ part of 'controller.dart';
 class NetworkController extends GetxController {
   var connectionStatus = 0.obs;
   late StreamSubscription<ConnectivityResult>
-  _connectivitySubcription;
+  connectivitySubcription;
 
   @override
   void onInit() {
     super.onInit();
-    _connectivitySubcription = Connectivity().onConnectivityChanged.listen
+    connectivitySubcription = Connectivity().onConnectivityChanged.listen
       (_updateConnectionStatus);
   }
 
@@ -25,6 +25,9 @@ class NetworkController extends GetxController {
         break;
       case ConnectivityResult.mobile:
         connectionStatus.value = 2;
+        break;
+      case ConnectivityResult.ethernet:
+        connectionStatus.value = 3;
         break;
       case ConnectivityResult.none:
         connectionStatus.value = 0;
