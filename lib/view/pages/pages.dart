@@ -1,4 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:perpus_jateng_app/helper/theme.dart';
 import 'package:perpus_jateng_app/view/widgets/widget.dart';

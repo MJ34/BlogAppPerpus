@@ -11,9 +11,9 @@ class ThemeColor {
 }
 
 class Assets {
-  static const String icons = "assets/icons/";
+  static String icons = "assets/icons/";
   static String images = "assets/images/";
-  static const String logo = "assets/logo/";
+  static String logo = "assets/logo/";
 }
 
 TextStyle blackTextStyle = GoogleFonts.poppins(
