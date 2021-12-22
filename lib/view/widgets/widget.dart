@@ -4,3 +4,4 @@ import 'package:perpus_jateng_app/helper/theme.dart';
 
 part 'button_widget.dart';
 part 'slider_widget.dart';
+part 'news_card.dart';
