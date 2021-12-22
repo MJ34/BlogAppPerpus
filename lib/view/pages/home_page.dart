@@ -169,6 +169,7 @@ class _HomePageState extends State<HomePage> {
         height: 10,
       ),
 
+      // ======================== News Card
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
@@ -222,7 +223,104 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      )
+      ),
+
+      // ======================== Artikel Card
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("ARTIKEL",
+                style: purpleTextStyle.copyWith(
+                    fontSize: 16, fontWeight: FontWeight.bold
+                )),
+            Text("See all",
+                style: purpleTextStyle.copyWith(
+                  fontSize: 16,
+                )),
+          ],
+        ),
+      ),
+
+      const SizedBox(
+        height: 14,
+      ),
+
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        child: const ArtikelCard(),
+      ),
+
+      const SizedBox(
+        height: 14,
+      ),
+
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        child: const ArtikelCard(),
+      ),
+
+      const SizedBox(
+        height: 14,
+      ),
+
+      // ======================== WISATA JATENG Card
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("WISATA JATENG",
+                style: purpleTextStyle.copyWith(
+                    fontSize: 16, fontWeight: FontWeight.bold
+                )),
+            Text("See all",
+                style: purpleTextStyle.copyWith(
+                  fontSize: 16,
+                )),
+          ],
+        ),
+      ),
+
+      const SizedBox(
+        height: 14,
+      ),
+
+      SizedBox(
+        height: Get.height / 3.3,
+        width: double.infinity,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 16),
+              child: const NewsCard(
+                  image: "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
+                  title: "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 16),
+              child: const NewsCard(
+                  image: "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
+                  title: "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 16),
+              child: const NewsCard(
+                  image: "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
+                  title: "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 16),
+              child: const NewsCard(
+                  image: "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
+                  title: "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
+            ),
+          ],
+        ),
+      ),
+
     ],
     ),
     );
