@@ -2,6 +2,8 @@
 class Assets {
   Assets._();
 
+  static const String iconsGayeng = 'assets/icons/gayeng.png';
+  static const String iconsJateng = 'assets/icons/jateng.png';
   static const String imagesNoConnection = 'assets/images/no_connection.jpg';
   static const String logoAppbar = 'assets/logo/appbar.png';
   static const String logoLogo = 'assets/logo/logo.png';

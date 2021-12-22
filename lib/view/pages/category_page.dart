@@ -5,13 +5,15 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Category Page',
-          style: blackTextStyle,
-        ),
-      ),
-    );
+    return HeaderWidget(
+        title: 'Category',
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: categoryList,
+          mainAxisSpacing: 24,
+          crossAxisSpacing: 24,
+          childAspectRatio: 2 / 2.6,
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 22),
+        ));
   }
 }
