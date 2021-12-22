@@ -34,8 +34,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: GetBuilder<PageViewController>(builder: (controller)=> BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: controller.navigationIndex,
-        selectedItemColor: ThemeColor.purpleColor,
-        unselectedItemColor: ThemeColor.blueColor,
+        selectedItemColor: ThemeColor.blueColor,
+        unselectedItemColor: ThemeColor.purpleColor,
         onTap: (index) {
           controller.changeCurrentScreen(index);
         },
