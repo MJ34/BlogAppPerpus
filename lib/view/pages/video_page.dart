@@ -5,13 +5,11 @@ class VideoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Video Page',
-          style: blackTextStyle,
-        ),
-      ),
-    );
+    return HeaderWidget(
+        title: 'Video',
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 2),
+          children: videoList,
+        ));
   }
 }

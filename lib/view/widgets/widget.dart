@@ -9,3 +9,4 @@ part 'news_card.dart';
 part 'artikel_card.dart';
 part 'header_widget.dart';
 part 'category_card.dart';
+part 'video_card.dart';
