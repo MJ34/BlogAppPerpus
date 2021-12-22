@@ -2,7 +2,7 @@
 class Assets {
   Assets._();
 
-  static const String iconsGayeng = 'assets/icons/gayeng.png';
+  static const String iconsAkun = 'assets/icons/akun.png';
   static const String iconsJateng = 'assets/icons/jateng.png';
   static const String imagesNoConnection = 'assets/images/no_connection.jpg';
   static const String logoAppbar = 'assets/logo/appbar.png';
