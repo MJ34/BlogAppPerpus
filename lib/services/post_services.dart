@@ -6,18 +6,31 @@ import 'package:perpus_jateng_app/api/api_db.dart';
 import 'package:perpus_jateng_app/models/post_model.dart';
 
 class PostServices extends ChangeNotifier {
-  //Get data from api
+  //Get data from api Slider
   static getPost(int perPage) async {
     var result = await http
         .get(Uri.parse(ApiDb.baseUrl+'posts?per_page=${perPage.toString()}'));
 
     if (result.statusCode == 200) {
       List data = jsonDecode(result.body);
-      print(data);
       List<PostModel> postModel = data.map((e) => PostModel.fromJson(e)).toList();
       return postModel;
     } else {
      return <PostModel>[];
+    }
+  }
+
+  //Get data from api News
+  static getPostByIdCategory(int idCategory) async {
+    var result = await http
+        .get(Uri.parse(ApiDb.baseUrl+'posts?categories=${idCategory.toString()}'));
+
+    if (result.statusCode == 200) {
+      List data = jsonDecode(result.body);
+      List<PostModel> postModel = data.map((e) => PostModel.fromJson(e)).toList();
+      return postModel;
+    } else {
+      return <PostModel>[];
     }
   }
 }
