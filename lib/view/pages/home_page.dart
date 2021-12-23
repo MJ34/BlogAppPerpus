@@ -98,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                               height: 32,
                               width: 32,
                               child: FloatingActionButton(
+                                heroTag: 'btnSearch',
                                 backgroundColor: (_button == 2)
                                     ? ThemeColor.yellowColor
                                     : const Color(0xFFC4C4C4).withOpacity(0.66),

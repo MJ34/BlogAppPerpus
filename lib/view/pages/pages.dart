@@ -10,3 +10,4 @@ part 'category_page.dart';
 part 'video_page.dart';
 part 'setting_page.dart';
 part 'no_connection_page.dart';
+part 'detail_page.dart';

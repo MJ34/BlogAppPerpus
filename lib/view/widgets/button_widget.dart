@@ -6,13 +6,16 @@ class ButtonWidget extends StatelessWidget {
   final double horizontal, vertical;
   final double? fontSize;
   final double? heightButton;
+  final Function? onTap;
+
   const ButtonWidget({Key? key,
     required this.title,
     required this.color,
     required this.horizontal,
     required this.vertical,
     this.fontSize,
-    this.heightButton
+    this.heightButton,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -21,7 +24,11 @@ class ButtonWidget extends StatelessWidget {
       height: heightButton,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(primary: color),
-          onPressed: () {},
+          onPressed: () {
+            if (onTap != null) {
+              onTap!();
+            }
+          },
           child: Padding(
             padding:
             EdgeInsets.symmetric(horizontal: horizontal,
