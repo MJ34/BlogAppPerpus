@@ -315,8 +315,9 @@ class _HomePageState extends State<HomePage> {
                           title: dataFlutter[index]
                               .titleModel
                               .title
-                              .toString()),
-                        ),
+                              .toString(),
+                          date: tglIndo(dataFlutter[index].date.toString())),
+                          ),
                 ).toList());
             }  else if (snapshot.hasError) {
               return SizedBox(
@@ -340,20 +341,6 @@ class _HomePageState extends State<HomePage> {
               );
             }
           }),
-
-         /* Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            child: const ArtikelCard(),
-          ),
-
-          const SizedBox(
-            height: 14,
-          ),
-
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            child: const ArtikelCard(),
-          ),*/
 
           const SizedBox(
             height: 14,

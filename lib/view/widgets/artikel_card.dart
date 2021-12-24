@@ -2,11 +2,12 @@ part of 'widget.dart';
 
 class ArtikelCard extends StatelessWidget {
 
-  final String image, title;
+  final String image, title, date;
 
   const ArtikelCard({Key? key,
     required this.image,
-    required this.title
+    required this.title,
+    required this.date
   }) : super(key: key);
 
   @override
@@ -72,7 +73,7 @@ class ArtikelCard extends StatelessWidget {
                     ),
 
                     Text(
-                      "12 Desember 2021",
+                      date.toString(),
                       style: blackTextStyle.copyWith(
                           fontSize: 10, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
