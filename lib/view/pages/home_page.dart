@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 if (snapshot.data != null) {
                   List<PostModel> data = snapshot.data;
                   return SizedBox(
-                      height: Get.height / 3,
+                      height: Get.height / 3.6,
                       width: Get.width,
                       child: Stack(
                         children: [
@@ -227,7 +227,7 @@ class _HomePageState extends State<HomePage> {
           ),
 
           FutureBuilder(
-            future: PostServices.getPostByIdCategory(14),
+            future: PostServices.getPostByIdCategory(idCategory: 14),
               builder: (context, AsyncSnapshot snapshot){
             if (snapshot.data != null) {
               List<PostModel> dataNews = snapshot.data;
@@ -297,7 +297,51 @@ class _HomePageState extends State<HomePage> {
             height: 14,
           ),
 
-          Container(
+          FutureBuilder(
+            future: PostServices.getPostByIdCategory(idCategory: 36, perPage: 2),
+              builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.data != null) {
+              List<PostModel> dataFlutter = snapshot.data;
+              return Column(
+                children: List.generate(
+                    dataFlutter.length,
+                        (index) => Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ArtikelCard(
+                              image: dataFlutter[index]
+                                  .imageFuture
+                                  .sourceUrl
+                                  .toString(),
+                          title: dataFlutter[index]
+                              .titleModel
+                              .title
+                              .toString()),
+                        ),
+                ).toList());
+            }  else if (snapshot.hasError) {
+              return SizedBox(
+                height: Get.height / 3,
+                width: Get.width,
+                child: Center(
+                  child: Text("Error",
+                    style: blackTextStyle.copyWith(color: Colors.red),
+                  ),
+                ),
+              );
+            }  else {
+              return SizedBox(
+                height: Get.height / 3,
+                width: Get.width,
+                child: const Center(
+                  child: CircularProgressIndicator(
+                    color: ThemeColor.purpleColor,
+                  ),
+                ),
+              );
+            }
+          }),
+
+         /* Container(
             margin: const EdgeInsets.symmetric(horizontal: 8),
             child: const ArtikelCard(),
           ),
@@ -309,7 +353,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 8),
             child: const ArtikelCard(),
-          ),
+          ),*/
 
           const SizedBox(
             height: 14,
@@ -336,47 +380,6 @@ class _HomePageState extends State<HomePage> {
             height: 14,
           ),
 
-          SizedBox(
-            height: Get.height / 3.3,
-            width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  child: const NewsCard(
-                      image:
-                          "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
-                      title:
-                          "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  child: const NewsCard(
-                      image:
-                          "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
-                      title:
-                          "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  child: const NewsCard(
-                      image:
-                          "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
-                      title:
-                          "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 16),
-                  child: const NewsCard(
-                      image:
-                          "https://media.istockphoto.com/photos/concept-of-an-open-magic-book-open-pages-with-water-and-land-and-picture-id1279460648?b=1&k=20&m=1279460648&s=170667a&w=0&h=uZa830sWo8hlFN0Y7FnQ14giNC0Z2EBNuTMuNJeJhQg=",
-                      title:
-                          "Deskripsi: Stack of books on a wooden library shelf, one of them open on top, multicolored book spines background."),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

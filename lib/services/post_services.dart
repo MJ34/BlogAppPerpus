@@ -20,10 +20,10 @@ class PostServices extends ChangeNotifier {
     }
   }
 
-  //Get data from api News
-  static getPostByIdCategory(int idCategory) async {
+  //Get data from api post by idCategory dan perPage
+  static getPostByIdCategory({int idCategory = 0, int perPage = 10}) async {
     var result = await http
-        .get(Uri.parse(ApiDb.baseUrl+'posts?categories=${idCategory.toString()}'));
+        .get(Uri.parse(ApiDb.baseUrl+'posts?categories=${idCategory.toString()}&per_page=${perPage.toString()}'));
 
     if (result.statusCode == 200) {
       List data = jsonDecode(result.body);

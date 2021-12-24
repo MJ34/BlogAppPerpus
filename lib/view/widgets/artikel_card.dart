@@ -1,7 +1,13 @@
 part of 'widget.dart';
 
 class ArtikelCard extends StatelessWidget {
-  const ArtikelCard({Key? key}) : super(key: key);
+
+  final String image, title;
+
+  const ArtikelCard({Key? key,
+    required this.image,
+    required this.title
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class ArtikelCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80",
+                image.toString(),
                 width: Get.width / 2.5,
                 height: Get.height / 8,
               ),
@@ -34,11 +40,11 @@ class ArtikelCard extends StatelessWidget {
                     width: Get.width / 2.2,
                     margin: const EdgeInsets.only(top: 6, bottom: 6),
                     child: Text(
-                      "Getting Started This project is a starting point for a Flutter application.",
+                      title.toString(),
                       style: blackTextStyle.copyWith(
                           fontSize: 12, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
-                      maxLines: 3,
+                      maxLines: 2,
                       softWrap: true,
                     )),
                 Row(
