@@ -47,6 +47,10 @@ class _HomePageState extends State<HomePage> {
                             items: List.generate(
                                 data.length,
                                 (index) => SliderWidget(
+                                  onTap: () {
+                                    //Kirim data slider ke detail page
+                                    Get.to(() => DetailPage(postModel: data[index]));
+                                  },
                                     image: data[index]
                                         .imageFuture
                                         .sourceUrl
@@ -239,7 +243,7 @@ class _HomePageState extends State<HomePage> {
                   children: List.generate(dataNews.length, (index) =>
                       InkWell(
                           onTap: () {
-                            Get.to(() => const DetailPage());
+                            Get.to(() => DetailPage(postModel: dataNews[index],));
                           },
                           child: Container(
                             margin: const EdgeInsets.only(left: 16),
@@ -308,6 +312,10 @@ class _HomePageState extends State<HomePage> {
                         (index) => Container(
                           margin: const EdgeInsets.symmetric(horizontal: 8),
                           child: ArtikelCard(
+                            onTap: (){
+                              //Kirim data artikel ke detail page
+                              Get.to(() => DetailPage(postModel: dataFlutter[index]));
+                            },
                               image: dataFlutter[index]
                                   .imageFuture
                                   .sourceUrl
@@ -365,6 +373,60 @@ class _HomePageState extends State<HomePage> {
 
           const SizedBox(
             height: 14,
+          ),
+
+          FutureBuilder(
+              future: PostServices.getPostByIdCategory(idCategory: 61),
+              builder: (context, AsyncSnapshot snapshot){
+                if (snapshot.data != null) {
+                  List<PostModel> dataNews = snapshot.data;
+                  return SizedBox(
+                    height: Get.height / 4.2,
+                    width: double.infinity,
+                    child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: List.generate(dataNews.length, (index) =>
+                            InkWell(
+                                onTap: () {
+                                  Get.to(() => DetailPage(postModel: dataNews[index],));
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 16),
+                                  child:  NewsCard(
+                                      image:
+                                      dataNews[index].imageFuture.sourceUrl.toString(),
+                                      title:
+                                      dataNews[index].titleModel.title.toString()),
+                                )
+                            )
+                        )
+                    ),
+                  );
+                }  else if (snapshot.hasError) {
+                  return SizedBox(
+                    height: Get.height / 3,
+                    width: Get.width,
+                    child: Center(
+                      child: Text("Error",
+                        style: blackTextStyle.copyWith(color: Colors.red),
+                      ),
+                    ),
+                  );
+                }  else {
+                  return SizedBox(
+                    height: Get.height / 3,
+                    width: Get.width,
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        color: ThemeColor.purpleColor,
+                      ),
+                    ),
+                  );
+                }
+              }),
+
+          const SizedBox(
+            height: 10,
           ),
 
         ],

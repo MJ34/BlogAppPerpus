@@ -1,7 +1,17 @@
 part of 'pages.dart';
 
-class DetailPage extends StatelessWidget {
-  const DetailPage({Key? key}) : super(key: key);
+class DetailPage extends StatefulWidget {
+  final PostModel postModel;
+
+  const DetailPage({Key? key, required this.postModel}) : super(key: key);
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  // buat variabel btnLove false
+  bool _isLove = false;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +24,7 @@ class DetailPage extends StatelessWidget {
               child: Stack(
                 children: [
                   Image.network(
-                    "https://images.unsplash.com/photo-1548003411-73cb4c666bb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+                    widget.postModel.imageFuture.sourceUrl.toString(),
                     width: Get.width,
                     fit: BoxFit.cover,
                     height: Get.height / 3,
@@ -25,23 +35,30 @@ class DetailPage extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: const Color(0xFF0D1839).withOpacity(0.4)),
                   ),
-
                   Positioned(
                     bottom: 0,
-                      left: 0,
-                      child: Container(
+                    left: 0,
+                    child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: FloatingActionButton(
                           heroTag: 'btnLike',
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              _isLove = !_isLove;
+                            });
+                          },
                           backgroundColor: ThemeColor.yellowColor,
-                          child: const FaIcon(
-                            FontAwesomeIcons.solidHeart,
-                            color: ThemeColor.whiteColor,
-                          ),
+                          child: (_isLove)
+                              ? const FaIcon(
+                                  FontAwesomeIcons.solidHeart,
+                                  color: Colors.red,
+                                )
+                              : const FaIcon(
+                                  FontAwesomeIcons.solidHeart,
+                                  color: ThemeColor.whiteColor,
+                                ),
                         )),
                   ),
-
                   Positioned(
                     bottom: 0,
                     left: 0,
@@ -49,7 +66,10 @@ class DetailPage extends StatelessWidget {
                         margin: const EdgeInsets.only(left: 90),
                         child: FloatingActionButton(
                           heroTag: 'btnShare',
-                          onPressed: () {},
+                          onPressed: () {
+                            //Fungsi share
+                            Share.share(widget.postModel.link.toString());
+                          },
                           backgroundColor: ThemeColor.yellowColor,
                           child: const FaIcon(
                             FontAwesomeIcons.shareAlt,
@@ -57,31 +77,23 @@ class DetailPage extends StatelessWidget {
                           ),
                         )),
                   ),
-
                 ],
               ),
             ),
-
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                'The standard Lorem Ipsum passage, used since the 1500s',
+                widget.postModel.titleModel.title.toString(),
                 style: purpleTextStyle.copyWith(fontSize: 18),
               ),
             ),
-
             Container(
               margin: const EdgeInsets.only(top: 5),
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                children:  [
-                  const ButtonWidget(
-                      heightButton: 22,
-                      title: 'Perpus',
-                      color: ThemeColor.yellowColor,
-                      horizontal: 1,
-                      vertical: 1,
-                      fontSize: 8),
+                children: [
+                  //Tampilkan categories
+                  listCategory(),
 
                   const SizedBox(
                     width: 10,
@@ -98,31 +110,45 @@ class DetailPage extends StatelessWidget {
                   ),
 
                   Text(
-                    "12 Desember 2021",
+                    tglIndo(widget.postModel.date.toString()),
                     style: blackTextStyle.copyWith(
                         fontSize: 10, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                     maxLines: 1,
                     softWrap: true,
                   )
-
                 ],
               ),
             ),
-
             Container(
-              margin: const EdgeInsets.only(top: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\nWhy do we usit?It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                textAlign: TextAlign.justify,
-                style: purpleTextStyle.copyWith(fontSize: 12),
-              ),
-            ),
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Html(
+                  data: widget.postModel.contentModel.content.toString(),
+                  style: {
+                    "body": Style(
+                      textAlign: TextAlign.justify,
+                      fontSize: const FontSize(19.0),
+                      fontWeight: FontWeight.w500,
+                    )
+                  },
+                )),
             SizedBox(
               height: Get.height / 30,
             )
           ],
         ));
+  }
+
+  listCategory() {
+    for (int i in widget.postModel.categories) {
+      return ButtonWidget(
+          heightButton: 22,
+          title: categoryName(i).toString(),
+          color: ThemeColor.yellowColor,
+          horizontal: 1,
+          vertical: 1,
+          fontSize: 8);
+    }
   }
 }
